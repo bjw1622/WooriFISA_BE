@@ -19,7 +19,6 @@ public class Basic {
 		System.out.println(initalLetter);
 		System.out.println(name);
 		System.out.println(isChecked);
-
 	}
 
 }
