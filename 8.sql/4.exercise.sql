@@ -67,7 +67,6 @@ select s.staff_id,s.first_name,s.last_name,sum(p.amount) from staff as s  join p
 -- (단, 이대로 조회하면 결과 데이터가 총 997행이기 때문에 상위 20개의 행만 제한하여 조회)
 -- → 실행 결과 행의 수는 총 20개(로 제한, LIMIT 사용)
 
-select * from film_actor;
 
 select f.title,sum(f.film_id) from film as f join film_actor as fa on f.film_id = fa.film_id group by f.title limit 20;
 
@@ -85,7 +84,8 @@ select title, description from film limit 20;
 -- 19. ALABAMA DEVIL film이 모든 영화 대여점에 총 몇 개의 복제본(영화 필름)이 배포되어있는지 알고 싶을 때,
 -- film 테이블의 별칭을 f, inventory 테이블의 별칭을 i로 짓고, 두 테이블을 연결(JOIN)하여 film_id 컬럼이 일치하는 조건의 title 및 film_id의 총 개수(count)를 ‘복제본’으로 별칭을 작성하여 title 별로 조회하되, title이 ‘ALABAMA DEVIL’인 film만 조회
 -- → 실행 결과 행의 수는 1개
-select  f.title as 복제본, count(f.film_id)from film as f join inventory as i on f.film_id = i.film_id where f.title = 'ALABAMA DEVIL';
+select  f.title, count(f.film_id) as '복제본' from film as f join inventory as i on f.film_id = i.film_id where f.title = 'ALABAMA DEVIL';
+
 
 -- 20. 고객 별 총 사용 금액을 last_name을 오름차순 정렬하여 조회하고 싶을 때,
 -- customer 테이블의 별칭을 c, payment 테이블의 별칭을 p로 짓고, 두 테이블을 customer_id컬럼으로 연결(JOIN)하여 first_name, last_name, amount의 총 액수를 조회하되, first_name, last_name 순으로 묶어서(grouping) last_name을 기준으로 오름차순하여 조회
